@@ -6,6 +6,7 @@ import {
     ScrollView,
     Image,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const NotificationScreen = () => {
 
@@ -58,33 +59,35 @@ const NotificationScreen = () => {
     }, [])
 
     return (
-        <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-            <View style={styles.header}>
-                <TabView tabTitles={["Preference", "Extended"]} selected={1} />
-                <View style={styles.accountHeadings}>
-                    <Text style={styles.inputText1}>Select all</Text>
-                    <Text style={styles.inputText1}>Mark all</Text>
-                </View>
-            </View>
-            {orderNotifications && orderNotifications.map((notification, index) =>
-                <View style={styles.orderContainer} key={index}>
-                    <View style={[styles.orderStatusContainer, { marginBottom: 10 }]}>
-                        <Text style={notification.selected ? styles.title : styles.unselectedTitle}>{notification.title}</Text>
-                        <Text style={[notification.selected ? styles.title : styles.unselectedTitle, { fontSize: 12 }]}>{notification.time}</Text>
-                    </View>
-                    <View style={styles.orderStatusContainer}>
-                        <Text style={{ opacity: notification.selected ? 1 : 0.5 }}>{notification.message}</Text>
-                        <Image
-                         // @ts-ignore
-                         source={notification.selected ? require("./assets/check.png") : "jwt"} 
-                         style={styles.check} />
+        <SafeAreaView style={styles.container}>
+            <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+                <View style={styles.header}>
+                    <TabView tabTitles={["Preference", "Extended"]} selected={1} />
+                    <View style={styles.accountHeadings}>
+                        <Text style={styles.inputText1}>Select all</Text>
+                        <Text style={styles.inputText1}>Mark all</Text>
                     </View>
                 </View>
-            )}
+                {orderNotifications && orderNotifications.map((notification, index) =>
+                    <View style={styles.orderContainer} key={index}>
+                        <View style={[styles.orderStatusContainer, { marginBottom: 10 }]}>
+                            <Text style={notification.selected ? styles.title : styles.unselectedTitle}>{notification.title}</Text>
+                            <Text style={[notification.selected ? styles.title : styles.unselectedTitle, { fontSize: 12 }]}>{notification.time}</Text>
+                        </View>
+                        <View style={styles.orderStatusContainer}>
+                            <Text style={{ opacity: notification.selected ? 1 : 0.5 }}>{notification.message}</Text>
+                            <Image
+                            // @ts-ignore
+                            source={notification.selected ? require("./assets/check.png") : "jwt"} 
+                            style={styles.check} />
+                        </View>
+                    </View>
+                )}
 
 
 
-        </ScrollView>
+            </ScrollView>
+        </SafeAreaView>
     )
 }
 

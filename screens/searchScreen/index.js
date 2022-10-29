@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { getItem, getProductsList, setItem } from "../../store";
 import { getProduct, getProducts, productAvailability } from '../../store/apis';
 import Loader from '../../components/Loader';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const SearchScreen = ({ route, navigation }) => {
   const dispatch = useDispatch();
@@ -90,7 +91,7 @@ const SearchScreen = ({ route, navigation }) => {
 
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
         <View style={{ paddingHorizontal: 10 }}>
           <View style={styles.header}>
@@ -224,7 +225,7 @@ const SearchScreen = ({ route, navigation }) => {
           navigation={navigation}
         />
       </View>
-    </View>
+    </SafeAreaView>
   )
 }
 

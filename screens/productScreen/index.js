@@ -7,6 +7,7 @@ import { addToBasket } from "../../store";
 import { getPrice } from "../../store/apis";
 import { useDispatch } from "react-redux";
 import { GlobalOptionsContext } from "@options";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const ProductDetails = ({ navigation, route }) => {
   const gOptions = useContext(GlobalOptionsContext);
@@ -73,125 +74,127 @@ const ProductDetails = ({ navigation, route }) => {
 
   const imgUrl = product?.images?.length ? product?.images[0]?.original : "https://cdnimg.webstaurantstore.com/uploads/blog/2019/3/blog-types-pizza_in-blog-8.jpg"
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      <ImageBackground source={{ uri: imgUrl }} resizeMode="cover" style={styles.imageContainer}>
-        <Pressable style={styles.heartIconContainer} onPress={() =>setFavorite(!favorite)}>
-          <Image
-            source={favorite ? require("./assets/favoriteIcon.png") : require("./assets/heartIcon.png")}
-            style={styles.heartIcon}
-          />
-        </Pressable>
-      </ImageBackground>
-      {isLoading && <Loader></Loader>}
-      <View style={styles.cardContainer}>
-        <View style={styles.flexRow}>
-          <Text style={styles.title}>{product?.title}</Text>
-          <Text style={styles.ratingText}>4.7</Text>
-        </View>
-        <View style={styles.flexRow1}>
-          <View style={styles.greenCircle}>
-            <Text style={[styles.white, styles.bold]}>%</Text>
+    <SafeAreaView style={styles.container}>
+      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+        <ImageBackground source={{ uri: imgUrl }} resizeMode="cover" style={styles.imageContainer}>
+          <Pressable style={styles.heartIconContainer} onPress={() =>setFavorite(!favorite)}>
+            <Image
+              source={favorite ? require("./assets/favoriteIcon.png") : require("./assets/heartIcon.png")}
+              style={styles.heartIcon}
+            />
+          </Pressable>
+        </ImageBackground>
+        {isLoading && <Loader></Loader>}
+        <View style={styles.cardContainer}>
+          <View style={styles.flexRow}>
+            <Text style={styles.title}>{product?.title}</Text>
+            <Text style={styles.ratingText}>4.7</Text>
           </View>
-          <Text style={styles.fnt12}>Free delivery</Text>
-        </View>
-        <Text style={styles.description}>{product?.description}</Text>
-        <View style={styles.cardsContainer}>
-          <Image source={require("./assets/cards.png")} style={styles.cards} />
-          <Text style={styles.count}>+50 Comments</Text>
-        </View>
-        <View style={styles.flexRow}>
-        </View>
-        <View style={styles.counterContainer}>
-          <View style={styles.priceContainer}>
-            <Text style={styles.priceText}>
-              ${productPrice.incl_tax}
-            </Text>
+          <View style={styles.flexRow1}>
+            <View style={styles.greenCircle}>
+              <Text style={[styles.white, styles.bold]}>%</Text>
+            </View>
+            <Text style={styles.fnt12}>Free delivery</Text>
           </View>
-          <View style={styles.counter}>
-            <Pressable
-              style={[styles.counterBtn, styles.decrement]}
-              onPress={() => decrement()}>
-              <Image
-                source={require("./assets/minusIcon.png")}
-                style={styles.icon}
+          <Text style={styles.description}>{product?.description}</Text>
+          <View style={styles.cardsContainer}>
+            <Image source={require("./assets/cards.png")} style={styles.cards} />
+            <Text style={styles.count}>+50 Comments</Text>
+          </View>
+          <View style={styles.flexRow}>
+          </View>
+          <View style={styles.counterContainer}>
+            <View style={styles.priceContainer}>
+              <Text style={styles.priceText}>
+                ${productPrice.incl_tax}
+              </Text>
+            </View>
+            <View style={styles.counter}>
+              <Pressable
+                style={[styles.counterBtn, styles.decrement]}
+                onPress={() => decrement()}>
+                <Image
+                  source={require("./assets/minusIcon.png")}
+                  style={styles.icon}
+                />
+              </Pressable>
+              <Text style={styles.counterText}>{quantity}</Text>
+              <Pressable
+                style={[styles.counterBtn, styles.increment]}
+                onPress={() => increment()}>
+                <Image
+                  source={require("./assets/plusIcon.png")}
+                  style={styles.icon}
+                />
+              </Pressable>
+            </View>
+          </View>
+          <Text style={styles.caption}>{product?.caption || "Add toping"}</Text>
+
+          <Pressable style={styles.pricing} onPress={() => setChecked(!checked)}>
+            <Text style={styles.summaryText}>Lorem ipsum </Text>
+            <View style={styles.ratings}>
+              <Text style={styles.pricingText}>
+                $5.00
+              </Text>
+              <RadioButton
+                value="first"
+                color="#EA4335"
+                status={checked ? 'checked' : 'unchecked'}
+                onPress={() => setChecked(!checked)}
               />
-            </Pressable>
-            <Text style={styles.counterText}>{quantity}</Text>
-            <Pressable
-              style={[styles.counterBtn, styles.increment]}
-              onPress={() => increment()}>
-              <Image
-                source={require("./assets/plusIcon.png")}
-                style={styles.icon}
+            </View>
+
+          </Pressable>
+          <Pressable style={styles.pricing} onPress={() => setChecked2(!checked2)}>
+            <Text style={styles.summaryText}>Sit sapien</Text>
+            <View style={styles.ratings}>
+              <Text style={styles.pricingText}>
+                $2.00
+              </Text>
+              <RadioButton
+                value="second"
+                color="#EA4335"
+                status={checked2 ? 'checked' : 'unchecked'}
+                onPress={() => setChecked2(!checked2)}
               />
-            </Pressable>
-          </View>
+            </View>
+
+          </Pressable>
+          <Pressable style={styles.pricing} onPress={() => setChecked3(!checked3)}>
+            <Text style={styles.summaryText}>Cursus mauris</Text>
+            <View style={styles.ratings}>
+              <Text style={styles.pricingText}>
+                $3.25
+              </Text>
+              <RadioButton
+                value="third"
+                color="#EA4335"
+                status={checked3 ? 'checked' : 'unchecked'}
+                onPress={() => setChecked3(!checked3)}
+              />
+            </View>
+
+          </Pressable>
+          <Pressable style={styles.pricing} onPress={() => setChecked4(!checked4)}>
+            <Text style={styles.summaryText}>Augue dolor.</Text>
+            <View style={styles.ratings}>
+              <Text style={styles.pricingText}>
+                $1.25
+              </Text>
+              <RadioButton
+                value="fourth"
+                color="#EA4335"
+                status={checked4 ? 'checked' : 'unchecked'}
+                onPress={() => setChecked4(!checked4)}
+              />
+            </View>
+
+          </Pressable>
+          <Button buttonText="Add to chart" style={styles.button} onPress={() => handleConfirmation(product?.id)} />
         </View>
-        <Text style={styles.caption}>{product?.caption || "Add toping"}</Text>
-
-        <Pressable style={styles.pricing} onPress={() => setChecked(!checked)}>
-          <Text style={styles.summaryText}>Lorem ipsum </Text>
-          <View style={styles.ratings}>
-            <Text style={styles.pricingText}>
-              $5.00
-            </Text>
-            <RadioButton
-              value="first"
-              color="#EA4335"
-              status={checked ? 'checked' : 'unchecked'}
-              onPress={() => setChecked(!checked)}
-            />
-          </View>
-
-        </Pressable>
-        <Pressable style={styles.pricing} onPress={() => setChecked2(!checked2)}>
-          <Text style={styles.summaryText}>Sit sapien</Text>
-          <View style={styles.ratings}>
-            <Text style={styles.pricingText}>
-              $2.00
-            </Text>
-            <RadioButton
-              value="second"
-              color="#EA4335"
-              status={checked2 ? 'checked' : 'unchecked'}
-              onPress={() => setChecked2(!checked2)}
-            />
-          </View>
-
-        </Pressable>
-        <Pressable style={styles.pricing} onPress={() => setChecked3(!checked3)}>
-          <Text style={styles.summaryText}>Cursus mauris</Text>
-          <View style={styles.ratings}>
-            <Text style={styles.pricingText}>
-              $3.25
-            </Text>
-            <RadioButton
-              value="third"
-              color="#EA4335"
-              status={checked3 ? 'checked' : 'unchecked'}
-              onPress={() => setChecked3(!checked3)}
-            />
-          </View>
-
-        </Pressable>
-        <Pressable style={styles.pricing} onPress={() => setChecked4(!checked4)}>
-          <Text style={styles.summaryText}>Augue dolor.</Text>
-          <View style={styles.ratings}>
-            <Text style={styles.pricingText}>
-              $1.25
-            </Text>
-            <RadioButton
-              value="fourth"
-              color="#EA4335"
-              status={checked4 ? 'checked' : 'unchecked'}
-              onPress={() => setChecked4(!checked4)}
-            />
-          </View>
-
-        </Pressable>
-        <Button buttonText="Add to chart" style={styles.button} onPress={() => handleConfirmation(product?.id)} />
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({

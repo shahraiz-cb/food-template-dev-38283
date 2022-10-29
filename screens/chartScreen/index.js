@@ -4,6 +4,7 @@ import { Swipeable } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
 import { addToBasket, cartCount, cartCounts, getBasket, removeFromBasket } from "../../store";
 import Loader from "../../components/Loader";
+import { SafeAreaView } from "react-native-safe-area-context";
 const ChartScreen = ({ navigation }) => {
   const [quantity, setQuantity] = useState(1);
   const [cartProducts, setCartProducts] = useState([]);
@@ -105,7 +106,7 @@ const ChartScreen = ({ navigation }) => {
 
 
   return (
-    <View style={[styles.container]}>
+    <SafeAreaView style={[styles.container]}>
       { isLoading && <Loader></Loader>}
       <ScrollView style={[styles.chartContainer]} showsVerticalScrollIndicator={false}>
         <View style={styles.forgetContainer}>
@@ -206,7 +207,7 @@ const ChartScreen = ({ navigation }) => {
         </View>
         <Button buttonText="Checkout" onPress={() => handleCheckout()} />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

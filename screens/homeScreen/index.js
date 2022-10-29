@@ -10,6 +10,7 @@ import {
   Dimensions,
   Pressable
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { getItem } from "../../store/index";
 
 
@@ -53,7 +54,7 @@ const Home = ({ navigation }) => {
   
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
         <Image source={require("./assets/notification.png")} style={styles.notificationIcon} />
         <View style={{ paddingHorizontal: 10 }}>
@@ -141,7 +142,7 @@ const Home = ({ navigation }) => {
           navigation={navigation}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({

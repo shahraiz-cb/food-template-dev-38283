@@ -1,11 +1,12 @@
 import React from "react";
 import { Text, StyleSheet, View, Image, TouchableHighlight } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 const LiveSearchScreen = () => {
 
 
 
   return (
-    <View style={[styles.container]}>
+    <SafeAreaView style={[styles.container]}>
       <Image
         source={require("./assets/mapImg.png")}
         style={styles.blurImageStyle}
@@ -53,7 +54,7 @@ const LiveSearchScreen = () => {
         </View>
 
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

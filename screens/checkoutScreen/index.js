@@ -6,6 +6,7 @@ import { addUserAddress, getUserInfo, startCheckout } from "../../store";
 import Loader from "../../components/Loader";
 import { modules } from "@modules";
 import { GlobalOptionsContext } from '@options';
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const CheckoutScreen = ({ navigation, route }) => {
   const gOptions = useContext(GlobalOptionsContext)
@@ -165,8 +166,9 @@ const CheckoutScreen = ({ navigation, route }) => {
   }
 
   return (
-    <View style={[styles.container]}>
+    <SafeAreaView style={[styles.container]}>
       {isLoading && <Loader></Loader>}
+      <ScrollView style={[styles.container]}>
       <View style={styles.headTextContainer}>
         <Text style={styles.headText}>Address</Text>
         <Pressable onPress={() => navigation.navigate("addressScreen")}>
@@ -243,7 +245,8 @@ const CheckoutScreen = ({ navigation, route }) => {
         </View>
       </View>
       <Button buttonText={"Order"} onPress={() => handleCheckout()} />
-    </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

@@ -7,6 +7,7 @@ import {
   Dimensions,
   Pressable
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { getItem } from "../../store";
 
 const windowWidth = Dimensions.get("window").width;
@@ -26,7 +27,7 @@ const Welcome = ({ navigation }) => {
     checkAuth();
   }, [])
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Image
         style={styles.background}
         // @ts-ignore
@@ -48,7 +49,7 @@ const Welcome = ({ navigation }) => {
           onPress={() => navigation.navigate("login")}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({

@@ -21,6 +21,7 @@ from allauth.account.views import confirm_email
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from django.apps import apps
 
 urlpatterns = [
     path("", include("home.urls")),
@@ -33,6 +34,10 @@ urlpatterns = [
     # Override email confirm to use allauth's HTML view instead of rest_auth's API view
     path("rest-auth/registration/account-confirm-email/<str:key>/", confirm_email),
     path("rest-auth/registration/", include("rest_auth.registration.urls")),
+
+    path('', include(apps.get_app_config('oscar').urls[0])),
+    re_path(r'^api/', include(apps.get_app_config("oscarapicheckout").urls[0])),  # Must be before oscar_api.urls
+    path("api/", include("oscarapi.urls")),
 ]
 
 admin.site.site_header = "food-template"

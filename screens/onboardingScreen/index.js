@@ -1,35 +1,38 @@
 import React from "react";
 import { Text, View, StyleSheet, Image, Pressable } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const OnboardingScreen = () => {
     return (
-        <View style={styles.container}>
-            <View style={styles.upper}>
-                <Image
-                    // @ts-ignore
-                    source={require("./assets/intro.png")}
-                    style={styles.intro}
-                />
-                <Image
-                    // @ts-ignore
-                    source={require("./assets/dots.png")}
-                    style={styles.dots}
-                />
-                <Pressable style={styles.iconContainer}>
+        <SafeAreaView style={styles.container}>
+            <View style={styles.container}>
+                <View style={styles.upper}>
                     <Image
                         // @ts-ignore
-                        source={require("./assets/next.png")}
-                        style={styles.icon}
+                        source={require("./assets/intro.png")}
+                        style={styles.intro}
                     />
-                </Pressable>
+                    <Image
+                        // @ts-ignore
+                        source={require("./assets/dots.png")}
+                        style={styles.dots}
+                    />
+                    <Pressable style={styles.iconContainer}>
+                        <Image
+                            // @ts-ignore
+                            source={require("./assets/next.png")}
+                            style={styles.icon}
+                        />
+                    </Pressable>
+                </View>
+                <View style={styles.lower}>
+                    <Text style={styles.mainHeading}>
+                        Sit luctus lectus felis consectetur id.
+                    </Text>
+                    <Text style={styles.text}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. At habitant metus, enim varius in. Morbi diam vel varius cras. </Text>
+                </View>
             </View>
-            <View style={styles.lower}>
-                <Text style={styles.mainHeading}>
-                    Sit luctus lectus felis consectetur id.
-                </Text>
-                <Text style={styles.text}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. At habitant metus, enim varius in. Morbi diam vel varius cras. </Text>
-            </View>
-        </View>
+        </SafeAreaView>
     );
 };
 const styles = StyleSheet.create({

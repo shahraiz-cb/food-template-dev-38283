@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Text, StyleSheet, View, Image, ScrollView, TouchableHighlight, Pressable, TextInput } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUserAddress, getUserAddress } from "../../store";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const AddressScreen = ({ navigation, route }) => {
   const dispatch = useDispatch();
@@ -59,53 +60,55 @@ const AddressScreen = ({ navigation, route }) => {
   }, [])
 
   return (
-    <ScrollView style={[styles.container]} showsVerticalScrollIndicator={false}>
-      {isLoading && <Loader></Loader>}
-      <View style={styles.searchContainer}>
-        <Text style={styles.headText}>Current address</Text>
-        <View style={[styles.inputText, { paddingVertical: 12, paddingLeft: 10 }]}>
-          <View style={{ flex: 1 }}>
-            <Text numberOfLines={1}>{currentAddress?.line1}</Text>
+    <SafeAreaView style={styles.container}>
+      <ScrollView style={[styles.container]} showsVerticalScrollIndicator={false}>
+        {isLoading && <Loader></Loader>}
+        <View style={styles.searchContainer}>
+          <Text style={styles.headText}>Current address</Text>
+          <View style={[styles.inputText, { paddingVertical: 12, paddingLeft: 10 }]}>
+            <View style={{ flex: 1 }}>
+              <Text numberOfLines={1}>{currentAddress?.line1}</Text>
+            </View>
+            <Image source={require("./assets/map.png")} style={styles.mr10} />
           </View>
-          <Image source={require("./assets/map.png")} style={styles.mr10} />
         </View>
-      </View>
-      <View style={styles.mapContainer}>
-        <Image source={require("./assets/mapIcon.png")} style={styles.mapIcon} />
-      </View>
-      <View style={styles.searchContainer}>
-        <Text style={[styles.headText]}>Search</Text>
-        <View style={styles.inputText}>
-          <View style={{ flex: 1 }}>
-            <Input placeholder='Search' onChangeText={handleSearch} />
+        <View style={styles.mapContainer}>
+          <Image source={require("./assets/mapIcon.png")} style={styles.mapIcon} />
+        </View>
+        <View style={styles.searchContainer}>
+          <Text style={[styles.headText]}>Search</Text>
+          <View style={styles.inputText}>
+            <View style={{ flex: 1 }}>
+              <Input placeholder='Search' onChangeText={handleSearch} />
+            </View>
+            <Image source={require("./assets/search.png")} style={styles.mr10} />
           </View>
-          <Image source={require("./assets/search.png")} style={styles.mr10} />
         </View>
-      </View>
 
-      <Text style={styles.subheading}>My locations</Text>
-      {
-        userAddresses && userAddresses.map((address, index) =>
-          <View style={styles.searchContainer} key={index}>
-            <Text style={{}}></Text>
-            <Pressable style={styles.addressContainer} onPress={() => updateCurrentAddress(address)}>
-              <View style={{ flex: 1 }}>
-                <Text numberOfLines={1}>{address?.line1}</Text>
-              </View>
-              <Pressable onPress={() => handleDeleteAddress(address?.id)}>
-                <Text style={styles.addressDelete}>Delete</Text>
+        <Text style={styles.subheading}>My locations</Text>
+        {
+          userAddresses && userAddresses.map((address, index) =>
+            <View style={styles.searchContainer} key={index}>
+              <Text style={{}}></Text>
+              <Pressable style={styles.addressContainer} onPress={() => updateCurrentAddress(address)}>
+                <View style={{ flex: 1 }}>
+                  <Text numberOfLines={1}>{address?.line1}</Text>
+                </View>
+                <Pressable onPress={() => handleDeleteAddress(address?.id)}>
+                  <Text style={styles.addressDelete}>Delete</Text>
+                </Pressable>
               </Pressable>
-            </Pressable>
-          </View>
-        )
-      }
+            </View>
+          )
+        }
 
 
-      <Pressable onPress={() => navigation.navigate("mapScreen")}>
-        <Text style={styles.addAddress}>+ Add new location</Text>
-      </Pressable>
-      <Button buttonText={"Update"} onPress={() => navigation.navigate("checkoutScreen", { currentAddress })} />
-    </ScrollView>
+        <Pressable onPress={() => navigation.navigate("mapScreen")}>
+          <Text style={styles.addAddress}>+ Add new location</Text>
+        </Pressable>
+        <Button buttonText={"Update"} onPress={() => navigation.navigate("checkoutScreen", { currentAddress })} />
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

@@ -9,6 +9,7 @@ import {
     ScrollView,
     LogBox
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const TodayPromos = () => {
     const [selectedTab, setSelectedTab] = useState(0);
@@ -54,7 +55,7 @@ const TodayPromos = () => {
         }
     };
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
                 <Image source={require("./assets/notification.png")} style={styles.notificationIcon} />
                 <View style={{ paddingHorizontal: 10 }}>
@@ -127,7 +128,7 @@ const TodayPromos = () => {
                     ]}
                 />
             </View>
-        </View>
+        </SafeAreaView>
     );
 };
 const styles = StyleSheet.create({

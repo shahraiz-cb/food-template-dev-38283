@@ -9,6 +9,7 @@ import {
     Pressable,
     ImageBackground
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const PaymentScreen = () => {
     const [cardNumber, setCardNumber] = useState("");
@@ -16,7 +17,7 @@ const PaymentScreen = () => {
     const [cvv, setCvv] = useState("");
     const [name, setName] = useState("");
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <ScrollView>
                 <TabView tabTitles={["Linked cards", "Add card"]} selected={0} />
                 <View style={styles.cardInfo}>
@@ -96,7 +97,7 @@ const PaymentScreen = () => {
                 <Button buttonText={"Update payment"} />
 
             </ScrollView>
-        </View>
+        </SafeAreaView>
     );
 };
 

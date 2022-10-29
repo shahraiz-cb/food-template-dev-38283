@@ -1,11 +1,12 @@
 import React from "react";
 import { Text, StyleSheet, View, Image, TouchableHighlight } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 const MapScreen = () => {
 
 
 
   return (
-    <View style={[styles.container]}>
+    <SafeAreaView style={[styles.container]}>
       <Image
         // @ts-ignore
         source={require("./assets/mapImg.png")}
@@ -39,7 +40,7 @@ const MapScreen = () => {
         </View>
 
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

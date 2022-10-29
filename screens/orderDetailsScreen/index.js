@@ -1,6 +1,7 @@
 //@ts-nocheck
 import React, { useEffect, useState } from "react";
 import { Text, StyleSheet, View, TouchableHighlight, Image, ScrollView } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const OrderDetailScreen = ({navigation, route}) => {
 const [orderDetails, setOrderDetails] = useState({})
@@ -16,6 +17,7 @@ const [orderTime, setOrderTime] = useState("");
     }
   }, [route?.params]);
   return (
+    <SafeAreaView style={{flex:1}}>
     <ScrollView style={[styles.container]} showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Text style={styles.heading}>Order details</Text>
@@ -85,6 +87,7 @@ const [orderTime, setOrderTime] = useState("");
       </View>
       
     </ScrollView>
+    </SafeAreaView>
   );
 };
 

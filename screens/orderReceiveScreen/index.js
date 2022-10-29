@@ -1,24 +1,27 @@
 // @ts-nocheck
 import React from "react";
 import { Text, StyleSheet, View, Image, TouchableHighlight, ScrollView, ImageBackground } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 const OrderReceiveScreen = () => {
 
 
     return (
-        <ScrollView style={[styles.container]} showsVerticalScrollIndicator={false}>
-            <ImageBackground source={require("./assets/background.png")} resizeMode="cover" style={styles.image}>
-                <Image source={require("./assets/mobile.png")} style={styles.mobile} />
-                <DetailsCard></DetailsCard>
-                <View style={styles.ratingContainer}>
-                    <Text style={styles.feedText}>Tell us your feedback</Text>
-                    <Text style={styles.feedMessage}>Let us know how you feel about the restaurant’s food and services</Text>
-                    <Image source={require("./assets/star.png")} style={styles.star} />
-                    <Text style={styles.feedText}>Write more details</Text>
-                </View>
-                <Button buttonText={"Submit"} />
-                <Text style={styles.skip}>Skip</Text>
-            </ImageBackground>
-        </ScrollView>
+        <SafeAreaView style={styles.container}>
+            <ScrollView style={[styles.container]} showsVerticalScrollIndicator={false}>
+                <ImageBackground source={require("./assets/background.png")} resizeMode="cover" style={styles.image}>
+                    <Image source={require("./assets/mobile.png")} style={styles.mobile} />
+                    <DetailsCard></DetailsCard>
+                    <View style={styles.ratingContainer}>
+                        <Text style={styles.feedText}>Tell us your feedback</Text>
+                        <Text style={styles.feedMessage}>Let us know how you feel about the restaurant’s food and services</Text>
+                        <Image source={require("./assets/star.png")} style={styles.star} />
+                        <Text style={styles.feedText}>Write more details</Text>
+                    </View>
+                    <Button buttonText={"Submit"} />
+                    <Text style={styles.skip}>Skip</Text>
+                </ImageBackground>
+            </ScrollView>
+        </SafeAreaView>
     );
 };
 

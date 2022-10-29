@@ -9,6 +9,7 @@ import {
     Pressable,
     ScrollView
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../../store";
 
@@ -32,7 +33,7 @@ const AccountScreen = () => {
 
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <ScrollView>
                 <View style={styles.profileContainer}>
                     <Image source={require("./assets/profilePicture.png")} style={styles.profilePicture} />
@@ -129,7 +130,7 @@ const AccountScreen = () => {
 
                 <Button buttonText={"Update"} />
             </ScrollView>
-        </View>
+        </SafeAreaView>
     );
 };
 const styles = StyleSheet.create({

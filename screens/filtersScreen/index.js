@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Text, StyleSheet, View, ScrollView, TouchableHighlight } from "react-native";
 import { Checkbox } from "react-native-paper"
+import { SafeAreaView } from "react-native-safe-area-context";
 const FiltersScreen = () => {
   const [checked, setChecked] = useState(false);
   const [checked1, setChecked1] = useState(true);
@@ -12,79 +13,81 @@ const FiltersScreen = () => {
   const [checked7, setChecked7] = useState(true);
   const [checked8, setChecked8] = useState(true);
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-      <Text />
-        <Text style={styles.heading}>Filter</Text>
+    <SafeAreaView style={styles.container}>
+      <ScrollView style={styles.container}>
+        <View style={styles.header}>
         <Text />
-      </View>
-      <Text style={styles.subHeading}>Choose your food filter</Text>
-      <View style={styles.sectionContainer}>
-        <View style={styles.switchContainer}>
-        <Checkbox color={"#000"}  status={checked ? 'checked' : 'unchecked'}
-                onPress={() => setChecked(!checked)}/>
-          <Text style={styles.label}>Popular</Text>
+          <Text style={styles.heading}>Filter</Text>
+          <Text />
+        </View>
+        <Text style={styles.subHeading}>Choose your food filter</Text>
+        <View style={styles.sectionContainer}>
+          <View style={styles.switchContainer}>
+          <Checkbox color={"#000"}  status={checked ? 'checked' : 'unchecked'}
+                  onPress={() => setChecked(!checked)}/>
+            <Text style={styles.label}>Popular</Text>
+            
+          </View>
+          <View style={styles.switchContainer1}>
+          <Checkbox color={"#000"}  status={checked1 ? 'checked' : 'unchecked'}
+                  onPress={() => setChecked1(!checked1)}/>
+            <Text style={styles.label}>Promotion</Text>
+            
+          </View>
+          <View style={styles.switchContainer1}>
+          <Checkbox color={"#000"}  status={checked2 ? 'checked' : 'unchecked'}
+                  onPress={() => setChecked2(!checked2)}/>
+            <Text style={styles.label}>Free delivery</Text>
+            
+          </View>
+        </View>
+        <Text style={styles.subHeading}>Choose your sort</Text>
+        <View style={styles.sectionContainer}>
+          <View style={styles.switchContainer}>
+          <Checkbox color={"#000"}  status={checked3 ? 'checked' : 'unchecked'}
+                  onPress={() => setChecked3(!checked3)}/>
+            <Text style={styles.label}>Price</Text>
+            
+          </View>
+          <View style={styles.switchContainer1}>
+          <Checkbox color={"#000"}  status={checked4 ? 'checked' : 'unchecked'}
+                  onPress={() => setChecked4(!checked4)}/>
+            <Text style={styles.label}>Rating</Text>
+            
+          </View>
+          <View style={styles.switchContainer1}>
+          <Checkbox color={"#000"}  status={checked5 ? 'checked' : 'unchecked'}
+                  onPress={() => setChecked5(!checked5)}/>
+            <Text style={styles.label}>Distance</Text>
+            
+          </View>
+        </View>
+        <Text style={styles.subHeading}>Food</Text>
+        <View style={styles.sectionContainer}>
+          <View style={styles.switchContainer}>
+          <Checkbox color={"#000"}  status={checked6 ? 'checked' : 'unchecked'}
+                  onPress={() => setChecked6(!checked6)}/>
+            <Text style={styles.label}>Burgers</Text>
+            
+          </View>
+          <View style={styles.switchContainer1}>
+          <Checkbox color={"#000"}  status={checked7 ? 'checked' : 'unchecked'}
+                  onPress={() => setChecked7(!checked7)}/>
+            <Text style={styles.label}>Pizza</Text>
           
-        </View>
-        <View style={styles.switchContainer1}>
-        <Checkbox color={"#000"}  status={checked1 ? 'checked' : 'unchecked'}
-                onPress={() => setChecked1(!checked1)}/>
-          <Text style={styles.label}>Promotion</Text>
+          </View>
+          <View style={styles.switchContainer1}>
+          <Checkbox color={"#000"}  status={checked8 ? 'checked' : 'unchecked'}
+                  onPress={() => setChecked8(!checked8)}/>
+            <Text style={styles.label}>Salad</Text>
           
+          </View>
         </View>
-        <View style={styles.switchContainer1}>
-        <Checkbox color={"#000"}  status={checked2 ? 'checked' : 'unchecked'}
-                onPress={() => setChecked2(!checked2)}/>
-          <Text style={styles.label}>Free delivery</Text>
-          
+        <View style={styles.btnContainer}>
+            <Button>Apply filter</Button>
         </View>
-      </View>
-      <Text style={styles.subHeading}>Choose your sort</Text>
-      <View style={styles.sectionContainer}>
-        <View style={styles.switchContainer}>
-        <Checkbox color={"#000"}  status={checked3 ? 'checked' : 'unchecked'}
-                onPress={() => setChecked3(!checked3)}/>
-          <Text style={styles.label}>Price</Text>
-          
-        </View>
-        <View style={styles.switchContainer1}>
-        <Checkbox color={"#000"}  status={checked4 ? 'checked' : 'unchecked'}
-                onPress={() => setChecked4(!checked4)}/>
-          <Text style={styles.label}>Rating</Text>
-          
-        </View>
-        <View style={styles.switchContainer1}>
-        <Checkbox color={"#000"}  status={checked5 ? 'checked' : 'unchecked'}
-                onPress={() => setChecked5(!checked5)}/>
-          <Text style={styles.label}>Distance</Text>
-          
-        </View>
-      </View>
-      <Text style={styles.subHeading}>Food</Text>
-      <View style={styles.sectionContainer}>
-        <View style={styles.switchContainer}>
-        <Checkbox color={"#000"}  status={checked6 ? 'checked' : 'unchecked'}
-                onPress={() => setChecked6(!checked6)}/>
-          <Text style={styles.label}>Burgers</Text>
-          
-        </View>
-        <View style={styles.switchContainer1}>
-        <Checkbox color={"#000"}  status={checked7 ? 'checked' : 'unchecked'}
-                onPress={() => setChecked7(!checked7)}/>
-          <Text style={styles.label}>Pizza</Text>
-         
-        </View>
-        <View style={styles.switchContainer1}>
-        <Checkbox color={"#000"}  status={checked8 ? 'checked' : 'unchecked'}
-                onPress={() => setChecked8(!checked8)}/>
-          <Text style={styles.label}>Salad</Text>
-         
-        </View>
-      </View>
-      <View style={styles.btnContainer}>
-          <Button>Apply filter</Button>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

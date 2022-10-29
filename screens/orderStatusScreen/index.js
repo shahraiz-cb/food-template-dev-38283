@@ -1,6 +1,7 @@
 //@ts-nocheck
 import React, { useEffect, useState } from "react";
 import { Text, StyleSheet, View, Image, TouchableHighlight, ScrollView, TextInput, Pressable } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrderList } from "../../store";
 const OrderStatusScreen = ({ navigation }) => {
@@ -67,55 +68,57 @@ const OrderStatusScreen = ({ navigation }) => {
     }, [])
 
     return (
-        <ScrollView style={[styles.container]} showsVerticalScrollIndicator={false}>
-            <Text style={styles.heading}>Current order status</Text>
-            <Image
-                // @ts-ignore
-                source={require("./assets/progress.png")}
-                style={styles.progressImageStyle}
-            />
-            <View style={styles.inputHeadings}>
-                <Text style={styles.inputText}>Order ID: {currentOrder?.number}</Text>
-                <Text style={[styles.inputText, { fontWeight: "bold" }]}>{currentOrder?.total_incl_tax} {currentOrder?.currency}</Text>
-            </View>
-            <Text style={styles.dateText}>{orderDate ? orderDate : ""}</Text>
-
-            <View style={[styles.orderTime]}>
-                <Text style={styles.inputText}>ETA: 30 Min</Text>
-                <Pressable onPress={() => navigation.navigate("orderDetailsScreen", { currentOrder, orderDate, orderTime })}>
-                    <Text style={[styles.inputText, { color: "#EA4335" }]}>Details</Text>
-                </Pressable>
-
-            </View>
-
-            {orderStatus && orderStatus.map((order, index) =>
-                <View style={styles.mainContainer} key={index}>
-                    <Image
-                        // @ts-ignore
-                        source={index == orderStatus.length - 1 ? require("./assets/dot.png") : order.currentStatus ? require("./assets/statusbar1.png") : require("./assets/statusbar2.png")}
-                        style={index == orderStatus.length - 1 ? styles.dot : styles.statusBar}
-                    />
-                    <View style={{ paddingLeft: 5 }}>
-                        <View style={styles.orderStatusContainer}>
-                            <Text style={[styles.statusHeading, { color: !order.currentStatus ? "#e7e7e7" : "#2A2B2E" }]}>{order.name}</Text>
-                            <Text style={[styles.statusHeading, { color: !order.currentStatus ? "#e7e7e7" : "#2A2B2E", textAlign: 'right' }]}>{orderTime}</Text>
-                        </View>
-                        <Text style={[styles.statusText, { color: !order.currentStatus ? "#e7e7e7" : "#2A2B2E" }]}>{order.status}</Text>
-                    </View>
+        <SafeAreaView style={styles.container}>
+            <ScrollView style={[styles.container]} showsVerticalScrollIndicator={false}>
+                <Text style={styles.heading}>Current order status</Text>
+                <Image
+                    // @ts-ignore
+                    source={require("./assets/progress.png")}
+                    style={styles.progressImageStyle}
+                />
+                <View style={styles.inputHeadings}>
+                    <Text style={styles.inputText}>Order ID: {currentOrder?.number}</Text>
+                    <Text style={[styles.inputText, { fontWeight: "bold" }]}>{currentOrder?.total_incl_tax} {currentOrder?.currency}</Text>
                 </View>
-            )}
+                <Text style={styles.dateText}>{orderDate ? orderDate : ""}</Text>
 
-            <View style={styles.emailContainer}>
-                <Text style={styles.mr10}>Full Name</Text>
-                <Text style={styles.text}>{currentOrder?.shipping_address?.first_name + " " + currentOrder?.shipping_address?.last_name}</Text>
-            </View>
-            <View>
-                <Text style={styles.mr10}>Delivery address</Text>
-                <Text style={styles.text}>{currentOrder?.shipping_address?.line1}</Text>
-            </View>
+                <View style={[styles.orderTime]}>
+                    <Text style={styles.inputText}>ETA: 30 Min</Text>
+                    <Pressable onPress={() => navigation.navigate("orderDetailsScreen", { currentOrder, orderDate, orderTime })}>
+                        <Text style={[styles.inputText, { color: "#EA4335" }]}>Details</Text>
+                    </Pressable>
 
-            <Button buttonText={"Live tracking"} />
-        </ScrollView>
+                </View>
+
+                {orderStatus && orderStatus.map((order, index) =>
+                    <View style={styles.mainContainer} key={index}>
+                        <Image
+                            // @ts-ignore
+                            source={index == orderStatus.length - 1 ? require("./assets/dot.png") : order.currentStatus ? require("./assets/statusbar1.png") : require("./assets/statusbar2.png")}
+                            style={index == orderStatus.length - 1 ? styles.dot : styles.statusBar}
+                        />
+                        <View style={{ paddingLeft: 5 }}>
+                            <View style={styles.orderStatusContainer}>
+                                <Text style={[styles.statusHeading, { color: !order.currentStatus ? "#e7e7e7" : "#2A2B2E" }]}>{order.name}</Text>
+                                <Text style={[styles.statusHeading, { color: !order.currentStatus ? "#e7e7e7" : "#2A2B2E", textAlign: 'right' }]}>{orderTime}</Text>
+                            </View>
+                            <Text style={[styles.statusText, { color: !order.currentStatus ? "#e7e7e7" : "#2A2B2E" }]}>{order.status}</Text>
+                        </View>
+                    </View>
+                )}
+
+                <View style={styles.emailContainer}>
+                    <Text style={styles.mr10}>Full Name</Text>
+                    <Text style={styles.text}>{currentOrder?.shipping_address?.first_name + " " + currentOrder?.shipping_address?.last_name}</Text>
+                </View>
+                <View>
+                    <Text style={styles.mr10}>Delivery address</Text>
+                    <Text style={styles.text}>{currentOrder?.shipping_address?.line1}</Text>
+                </View>
+
+                <Button buttonText={"Live tracking"} />
+            </ScrollView>
+        </SafeAreaView>
     );
 };
 
